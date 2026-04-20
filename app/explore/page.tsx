@@ -1,176 +1,200 @@
+"use client";
+import { useState } from "react";
 import { Button } from "../../components/ui/Button";
 import { 
   ArrowRight, 
   BookOpen, 
-  Briefcase, 
+  CheckCircle2, 
+  User, 
+  Phone, 
   Zap, 
-  Globe, 
-  Cpu, 
-  ArrowUpRight, 
   ShieldCheck,
-  Layers,
-  TrendingUp,
-  Compass,
-  Code2
+  ChevronRight,
+  Loader2
 } from "lucide-react";
-import Link from "next/link";
+
+// The real tech courses offered by Jengatech
+const ENROLLMENT_COURSES = [
+  "Software Engineering",
+  "Cybersecurity Essentials",
+  "AI & Machine Learning",
+  "Cloud Computing",
+  "UI/UX Design",
+  "Mobile App Development",
+  "Data Science",
+  "DevOps Engineering",
+  "Blockchain Technology"
+];
 
 export default function ExplorePage() {
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [status, setStatus] = useState<"IDLE" | "SUBMITTING" | "SUCCESS" | "ERROR">("IDLE");
+
+  // Replace 'YOUR_FORMSPREE_ID' with the ID you get from formspree.io
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORMSPREE_ID";
+
+  const handleEnrollment = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("SUBMITTING");
+
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        setStatus("SUCCESS");
+      } else {
+        setStatus("ERROR");
+      }
+    } catch (err) {
+      setStatus("ERROR");
+    }
+  };
+
+  if (status === "SUCCESS") {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center px-6">
+        <div className="max-w-lg w-full text-center p-12 rounded-[3.5rem] bg-orange-50 border border-orange-100 animate-fade-in shadow-2xl shadow-orange-100">
+          <div className="w-20 h-20 bg-[#FF6B00] rounded-full flex items-center justify-center text-white mx-auto mb-8 shadow-lg">
+            <CheckCircle2 size={40} />
+          </div>
+          <h2 className="text-4xl font-black text-[#0A0A0A] mb-4 tracking-tight">Application Received</h2>
+          <p className="text-[#525252] mb-10 font-medium">
+            Thank you for choosing Jengatech. Our admissions lead will contact you via WhatsApp or Phone within 24 hours.
+          </p>
+          <Button href="/" variant="primary" className="w-full py-6">Return to Home</Button>
+        </div>
+      </main>
+    );
+  }
+
   return (
-    <main className="bg-white min-h-screen pt-32 pb-24 selection:bg-[#FF6B00] selection:text-white overflow-hidden">
-      
-      {/* 1. THE FRONTIER HEADER */}
-      <section className="relative pt-20 pb-16 px-6">
-        <div className="absolute top-0 right-0 w-[50%] h-[600px] bg-gradient-to-bl from-orange-50/40 to-transparent -z-10 rounded-bl-[30rem]" />
+    <main className="bg-white min-h-screen pt-32 pb-24 selection:bg-[#FF6B00] selection:text-white">
+      <div className="max-w-7xl mx-auto px-6">
         
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
-            <div className="max-w-4xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A0A0A] text-white text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-fade-in">
-                <Compass size={12} className="text-[#FF6B00] animate-spin-slow" /> Global Discovery Hub
-              </div>
-              <h1 className="text-6xl md:text-[10rem] font-black text-[#0A0A0A] tracking-tighter leading-[0.8] mb-8">
-                Explore <br /> <span className="text-[#FF6B00]">Frontiers.</span>
-              </h1>
-              <p className="text-xl md:text-3xl text-[#525252] font-medium leading-relaxed max-w-2xl">
-                Connecting African technical excellence with the most disruptive 
-                innovations across the global landscape.
-              </p>
-            </div>
+        {/* --- 1. HEADER --- */}
+        <div className="mb-20 text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A0A0A] text-white text-[10px] font-black uppercase tracking-[0.3em] mb-8">
+            <Zap size={12} className="text-[#FF6B00]" /> Student Intake 2026
           </div>
+          <h1 className="text-5xl md:text-8xl font-black text-[#0A0A0A] tracking-tighter leading-[0.9] mb-8">
+            Choose Your <br /> <span className="text-[#FF6B00] italic">Evolution.</span>
+          </h1>
+          <p className="text-xl text-[#525252] max-w-2xl font-medium leading-relaxed">
+            Select the technical track you wish to master. Once submitted, our 
+            career consultants will reach out to finalize your onboarding.
+          </p>
         </div>
-      </section>
 
-      {/* 2. THE ECOSYSTEM PILLARS (Bento-Grid) */}
-      <section className="py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            {/* PILLAR 1: THE ACADEMY */}
-            <div className="lg:col-span-7 group relative overflow-hidden bg-[#0A0A0A] rounded-[4rem] min-h-[600px] flex flex-col justify-between p-12 transition-all duration-700 hover:shadow-2xl hover:shadow-orange-900/30">
-              <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none bg-grid" />
+        {/* --- 2. ENROLLMENT FLOW --- */}
+        <form onSubmit={handleEnrollment} className="grid lg:grid-cols-12 gap-16 items-start">
+          
+          {/* --- LEFT: COURSE SELECTION (7 Cols) --- */}
+          <div className="lg:col-span-7 space-y-10">
+            <div>
+              <h3 className="text-xs font-black uppercase tracking-[0.4em] text-[#0A0A0A] mb-8 flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-[#FF6B00] text-white flex items-center justify-center text-[10px]">01</span>
+                Select Your Programme
+              </h3>
               
-              <div className="relative z-10 flex justify-between items-start">
-                <div className="w-20 h-20 bg-[#FF6B00] rounded-[2rem] flex items-center justify-center text-white shadow-2xl transition-transform duration-500 group-hover:scale-110">
-                  <BookOpen size={40} />
-                </div>
-                <div className="px-6 py-2 rounded-full border border-white/10 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest">
-                    6-Month Mastery
-                </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {ENROLLMENT_COURSES.map((course) => (
+                  <label 
+                    key={course}
+                    className={`relative p-6 rounded-[2rem] border-2 transition-all cursor-pointer group flex items-center justify-between ${
+                      selectedCourse === course 
+                      ? 'border-[#FF6B00] bg-orange-50 shadow-lg shadow-orange-100/50' 
+                      : 'border-gray-100 bg-white hover:border-gray-300'
+                    }`}
+                  >
+                    <input 
+                      type="radio" 
+                      name="Requested_Course" 
+                      value={course}
+                      required
+                      onChange={() => setSelectedCourse(course)}
+                      className="hidden"
+                    />
+                    <span className={`font-bold text-sm tracking-tight ${selectedCourse === course ? 'text-[#FF6B00]' : 'text-[#0A0A0A]'}`}>
+                      {course}
+                    </span>
+                    {selectedCourse === course ? (
+                      <CheckCircle2 size={20} className="text-[#FF6B00]" />
+                    ) : (
+                      <div className="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-[#FF6B00] transition-colors" />
+                    )}
+                  </label>
+                ))}
               </div>
+            </div>
+          </div>
 
+          {/* --- RIGHT: ADMISSIONS FORM (5 Cols) --- */}
+          <div className="lg:col-span-5 sticky top-32">
+            <div className="p-10 bg-[#0A0A0A] rounded-[3.5rem] text-white shadow-2xl relative overflow-hidden">
               <div className="relative z-10">
-                <h2 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none">
-                    Academy <br /> <span className="text-[#FF6B00] italic">Track.</span>
-                </h2>
-                <p className="text-gray-400 text-lg mb-10 max-w-sm leading-relaxed">
-                    Intensive engineering tracks designed to bridge the gap between 
-                    beginner logic and Silicon Valley standards.
-                </p>
-                <Button href="/education" className="bg-white text-[#0A0A0A] hover:bg-[#FF6B00] hover:text-white px-12 py-7 border-none text-xs rounded-2xl">
-                  View Syllabus <ArrowRight className="ml-2" size={16} />
+                <h3 className="text-xs font-black uppercase tracking-[0.4em] text-[#FF6B00] mb-10 flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-white text-[#0A0A0A] flex items-center justify-center text-[10px]">02</span>
+                  Candidate Profile
+                </h3>
+
+                <div className="space-y-6 mb-12">
+                  <div className="relative group">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#FF6B00] transition-colors" size={18} />
+                    <input 
+                      type="text" 
+                      name="Student_Name" 
+                      required 
+                      placeholder="Full Name" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-[#FF6B00] focus:bg-white/10 transition-all font-medium placeholder:text-gray-600"
+                    />
+                  </div>
+
+                  <div className="relative group">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#FF6B00] transition-colors" size={18} />
+                    <input 
+                      type="tel" 
+                      name="Phone_Number" 
+                      required 
+                      placeholder="WhatsApp Phone Number" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-[#FF6B00] focus:bg-white/10 transition-all font-medium placeholder:text-gray-600"
+                    />
+                  </div>
+                </div>
+
+                <Button 
+                  type="submit"
+                  disabled={status === "SUBMITTING" || !selectedCourse}
+                  className="w-full py-6 rounded-2xl shadow-xl shadow-orange-900/40 group flex items-center justify-center gap-3 disabled:bg-gray-800 disabled:text-gray-500"
+                >
+                  {status === "SUBMITTING" ? (
+                    <>Processing <Loader2 className="animate-spin" size={18} /></>
+                  ) : (
+                    <>Submit Application <ChevronRight className="group-hover:translate-x-1 transition-transform" size={18}/></>
+                  )}
                 </Button>
-              </div>
-            </div>
 
-            {/* PILLAR 2: SOLUTIONS */}
-            <div className="lg:col-span-5 group relative overflow-hidden bg-[#F9FAFB] border border-gray-100 rounded-[4rem] min-h-[600px] flex flex-col justify-between p-12 transition-all duration-700 hover:shadow-premium hover:border-[#FF6B00]/20">
-              <div className="relative z-10">
-                <div className="w-20 h-20 bg-[#0A0A0A] rounded-[2rem] flex items-center justify-center text-[#FF6B00] shadow-xl mb-12">
-                  <Briefcase size={40} />
+                <div className="mt-8 pt-8 border-t border-white/5 flex items-center gap-4 text-[9px] font-black uppercase tracking-[0.2em] text-gray-500">
+                  <ShieldCheck size={14} className="text-[#FF6B00]" /> GDPR Compliant Encryption
                 </div>
-                <h2 className="text-5xl md:text-7xl font-black text-[#0A0A0A] mb-6 tracking-tighter leading-none">
-                    Enterprise <br /> Systems.
-                </h2>
-                <p className="text-[#525252] text-lg mb-10 leading-relaxed">
-                    Custom AI frameworks and secure cloud architectures for modern Nigerian corporations.
-                </p>
               </div>
-              <Link href="/solutions" className="group/link inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-[#0A0A0A] hover:text-[#FF6B00] transition-colors">
-                Explore Services <ArrowUpRight size={20} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-              </Link>
+
+              {/* Background abstract glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6B00]/10 blur-[100px] pointer-events-none" />
             </div>
 
+            {status === "ERROR" && (
+              <p className="mt-4 text-red-500 text-xs font-bold text-center">Something went wrong. Please try again or call support.</p>
+            )}
           </div>
-        </div>
-      </section>
+        </form>
 
-      {/* 3. GLOBAL TECH PULSE (Real explorings section) */}
-      <section className="py-32 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="max-w-2xl">
-              <span className="text-[#FF6B00] font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">World Intelligence</span>
-              <h2 className="text-4xl md:text-6xl font-black text-[#0A0A0A] tracking-tighter">Global Tech Pulse.</h2>
-            </div>
-            <p className="text-[#525252] font-medium md:max-w-xs text-sm border-l-2 border-gray-100 pl-6">
-              How Jengatech integrates current global shifts into your career and business.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Trend 1 */}
-            <div className="p-10 rounded-[3rem] bg-[#F9FAFB] border border-gray-50 group hover:bg-white hover:shadow-premium transition-all duration-500">
-               <div className="flex justify-between items-start mb-10">
-                 <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#FF6B00]"><Cpu size={24} /></div>
-                 <span className="text-[10px] font-black text-gray-400">01 / SILICON VALLEY</span>
-               </div>
-               <h4 className="text-xl font-bold mb-4 text-[#0A0A0A]">Generative AI Agents</h4>
-               <p className="text-sm text-[#525252] leading-relaxed mb-8">
-                 We are moving beyond chatbots to autonomous agents. Our Academy now integrates LLM-orchestration in every backend track.
-               </p>
-               <div className="flex items-center gap-2 text-[10px] font-black uppercase text-[#FF6B00]">
-                  <TrendingUp size={14} /> Critical Shift
-               </div>
-            </div>
-
-            {/* Trend 2 */}
-            <div className="p-10 rounded-[3rem] bg-[#F9FAFB] border border-gray-50 group hover:bg-white hover:shadow-premium transition-all duration-500">
-               <div className="flex justify-between items-start mb-10">
-                 <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#FF6B00]"><Code2 size={24} /></div>
-                 <span className="text-[10px] font-black text-gray-400">02 / LONDON HUB</span>
-               </div>
-               <h4 className="text-xl font-bold mb-4 text-[#0A0A0A]">Next-Gen Fintech</h4>
-               <p className="text-sm text-[#525252] leading-relaxed mb-8">
-                 Real-time cross-border settlements via Blockchain. Jengatech Solutions builds the rails for the next era of African payments.
-               </p>
-               <div className="flex items-center gap-2 text-[10px] font-black uppercase text-[#FF6B00]">
-                  <TrendingUp size={14} /> High Demand
-               </div>
-            </div>
-
-            {/* Trend 3 */}
-            <div className="p-10 rounded-[3rem] bg-[#0A0A0A] text-white group transition-all duration-500 shadow-2xl">
-               <div className="flex justify-between items-start mb-10">
-                 <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-[#FF6B00]"><Globe size={24} /></div>
-                 <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Global Network</span>
-               </div>
-               <h4 className="text-xl font-bold mb-4">Remote Engineering</h4>
-               <p className="text-gray-400 text-sm leading-relaxed mb-8">
-                 African developers are now the primary workforce for EU startups. Jengatech ensures you are "Global-Ready."
-               </p>
-               <Button href="/education" variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-black py-4 rounded-xl text-[10px]">
-                 Join the Network
-               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. FINAL HUB ACTION */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto bg-[#F9FAFB] rounded-[4rem] p-16 md:p-24 text-center border border-gray-100">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-[#525252] mb-10">End of Discovery</h3>
-            <h2 className="text-5xl md:text-8xl font-black text-[#0A0A0A] tracking-tighter mb-12 leading-none">
-                Start your <br /> <span className="text-[#FF6B00] italic">Evolution.</span>
-            </h2>
-            <div className="flex flex-wrap justify-center gap-8">
-                <Button href="/contact" className="px-16 py-6 rounded-2xl shadow-xl shadow-orange-200">Start Project</Button>
-                <Button href="/education" variant="outline" className="px-16 py-6 rounded-2xl border-[#0A0A0A]">Visit Academy</Button>
-            </div>
-        </div>
-      </section>
-
+      </div>
     </main>
   );
 }

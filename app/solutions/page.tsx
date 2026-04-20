@@ -14,13 +14,12 @@ export default function SolutionsPage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-100 bg-orange-50 text-[#FF6B00] text-[10px] font-black uppercase tracking-[0.3em] mb-8">
             <Zap size={14} fill="#FF6B00" /> Enterprise Intelligence
           </div>
-          <h1 className="text-5xl md:text-8xl font-black text-[#0A0A0A] tracking-tighter leading-[0.95] mb-10">
-            Digital Engineering <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] to-orange-400">for Global Scale.</span>
+          <h1 className="text-5xl md:text-7xl font-black text-[#0A0A0A] tracking-tighter leading-[0.95] mb-10">
+            Digital Infrastructure <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] to-orange-400">for Global Growth.</span>
           </h1>
           <p className="text-xl md:text-2xl text-[#525252] max-w-2xl leading-relaxed font-medium">
-            We provide the technical architecture and artificial intelligence 
-            required to compete in the modern digital economy.
+            We architect and deploy intelligent systems that give companies a competitive edge.
           </p>
         </div>
       </header>
@@ -54,7 +53,7 @@ export default function SolutionsPage() {
                 {/* SOLUTION BOX (High Contrast White) */}
                 <div className="p-8 bg-white rounded-[2rem] border border-gray-100 shadow-premium group transition-all">
                   <h4 className="text-[10px] font-black text-green-600 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <CheckCircle2 size={16}/> Jengatech Implementation
+                    <CheckCircle2 size={16}/> Jengatech in Action
                   </h4>
                   <p className="text-[#525252] text-base leading-relaxed">{service.solution}</p>
                 </div>
@@ -62,11 +61,11 @@ export default function SolutionsPage() {
 
               <div className="flex flex-wrap gap-4">
                 <Button href="/consultation" variant="secondary" className="px-10">
-                  Book Strategy Session
+                  Speak With a Strategy Expert
                 </Button>
                 <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#525252] px-6">
                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> 
-                   Active Deployment
+                  Systems Going Live
                 </div>
               </div>
             </div>
@@ -107,12 +106,11 @@ export default function SolutionsPage() {
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Ready to modernise?</h2>
             <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join 50+ Nigerian companies already scaling their operations 
-              with our intelligent digital frameworks.
+              Trusted by 50+ Nigerian companies scaling with our intelligent digital systems.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              <Button href="/contact" className="bg-[#FF6B00] border-none px-12">Start Your Project</Button>
-              <Button href="/explore" variant="outline" className="border-white/20 text-white hover:bg-white hover:text-black">Case Studies</Button>
+              <Button href="/contact" className="bg-[#FF6B00] border-none px-12">Let’s Get Started</Button>
+              <Button href="/consultation" variant="outline" className="border-white/20 text-white hover:bg-white hover:text-black">Speak With Our Team</Button>
             </div>
           </div>
           {/* Decorative gradients */}

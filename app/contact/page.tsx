@@ -10,11 +10,11 @@ export default function ContactPage() {
           {/* Left Side: Info */}
           <div>
             <h1 className="text-5xl md:text-6xl font-black text-[#0A0A0A] mb-8 tracking-tighter">
-              Let's build <br /> <span className="text-[#FF6B00]">together.</span>
+              Partner With Us <br /> <span className="text-[#FF6B00]">to Build at Scale.</span>
             </h1>
             <p className="text-[#525252] text-lg mb-12">
-              Have a question about our courses? Or need an enterprise solution? 
-              Our team is ready to help you navigate your digital journey.
+              Have questions about our programs or need an enterprise solution? Our team is 
+              ready to guide your digital transformation.
             </p>
 
             <div className="space-y-8">
@@ -29,14 +29,14 @@ export default function ContactPage() {
                 <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00]"><Phone /></div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Call Us</p>
-                  <p className="font-bold text-[#0A0A0A]">+234 (0) 800 JENGA TECH</p>
+                  <p className="font-bold text-[#0A0A0A]">+234 (0) 8130963475</p>
                 </div>
               </div>
               <div className="flex items-center gap-6">
                 <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FF6B00]"><MapPin /></div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">Head Office</p>
-                  <p className="font-bold text-[#0A0A0A]">Lagos, Nigeria</p>
+                  <p className="font-bold text-[#0A0A0A]">Aba, Nigeria</p>
                 </div>
               </div>
             </div>

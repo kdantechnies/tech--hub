@@ -17,7 +17,7 @@ export const Footer = () => {
           <h4 className="font-bold mb-4">Company</h4>
           <ul className="space-y-2 text-sm text-brand-gray">
             <li><Link href="/about" className="hover:text-brand-orange">About Us</Link></li>
-            <li><Link href="/contact" className="hover:text-brand-orange">Careers</Link></li>
+            <li><Link href="/explore" className="hover:text-brand-orange">Careers</Link></li>
             <li><Link href="/contact" className="hover:text-brand-orange">Contact</Link></li>
           </ul>
         </div>
@@ -27,14 +27,13 @@ export const Footer = () => {
           <ul className="space-y-2 text-sm text-brand-gray">
             <li><Link href="/education" className="hover:text-brand-orange">Tech Academy</Link></li>
             <li><Link href="/solutions" className="hover:text-brand-orange">Software Solutions</Link></li>
-            <li><Link href="/solutions" className="hover:text-brand-orange">AI & Robotics</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-bold mb-4">Contact</h4>
-          <p className="text-sm text-brand-gray">Lagos, Nigeria</p>
-          <p className="text-sm text-brand-gray">info@jengatech.com</p>
+          <p className="text-sm text-brand-gray">Aba, Nigeria</p>
+          <p className="text-sm text-brand-gray">+234 8130963475</p>
         </div>
       </div>
       
