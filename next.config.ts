@@ -10,16 +10,19 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'i.pravatar.cc', // Add this for the customer avatars
+        hostname: 'i.pravatar.cc',
         pathname: '**',
       },
     ],
   },
-  experimental: {
-    turbo: {
-      root: ".",
-    },
+  devIndicators: {
+    appIsrStatus: false,
   },
+  /* 
+     We removed the 'experimental: { turbo: { ... } }' block 
+     because it is only for local Windows development and 
+     Vercel does not support it in production.
+  */
 };
 
 export default nextConfig;

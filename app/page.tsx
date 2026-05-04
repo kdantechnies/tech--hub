@@ -114,6 +114,7 @@ export default function HomePage() {
                   alt="Tech Academy"
                   fill
                   className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Professional White-to-Transparent Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/90 to-white/20 z-10" />
@@ -156,6 +157,7 @@ export default function HomePage() {
                   alt="Enterprise Solutions"
                   fill
                   className="object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 {/* Professional Black-to-Transparent Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent z-10" />

@@ -50,6 +50,7 @@ export const Navbar = () => {
               fill 
               className="object-contain"
               priority
+              sizes="(max-width: 768px) 40px, 50px" 
             />
           </div>
           <div className="flex flex-col">
