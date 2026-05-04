@@ -15,13 +15,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  devIndicators: {
-    appIsrStatus: false,
-  },
   /* 
-     We removed the 'experimental: { turbo: { ... } }' block 
-     because it is only for local Windows development and 
-     Vercel does not support it in production.
+     We removed 'devIndicators' and 'experimental' blocks.
+     This ensures the TypeScript compiler on Vercel 
+     does not see any "unknown" properties and allows the 
+     build to finish successfully.
   */
 };
 
