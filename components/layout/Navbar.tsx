@@ -45,7 +45,7 @@ export const Navbar = () => {
         <Link href="/" onClick={closeMenu} className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 md:w-11 md:h-11 transition-transform group-hover:rotate-12 duration-300">
             <Image 
-              src="/logo.png" 
+              src="/Logo.png" 
               alt="Jengatech Logo" 
               fill 
               className="object-contain"

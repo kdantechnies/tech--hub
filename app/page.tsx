@@ -46,7 +46,7 @@ export default function HomePage() {
                <div className="w-64 h-64 md:w-96 md:h-96 relative animate-bounce-slow">
                   {/* Replace with your high-end 3D visual or Logo mark */}
                   <Image 
-                    src="/logo.png" 
+                    src="/Logo.png" 
                     alt="Jengatech Core" 
                     fill 
                     className="object-contain drop-shadow-2xl"

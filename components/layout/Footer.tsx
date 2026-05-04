@@ -21,7 +21,7 @@ export const Footer = () => {
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="relative w-10 h-10 transition-transform group-hover:rotate-12 duration-300">
                 <Image 
-                  src="/logo.png" 
+                  src="/Logo.png" 
                   alt="Jengatech Logo" 
                   fill 
                   className="object-contain"
