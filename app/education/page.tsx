@@ -57,9 +57,9 @@ const ALL_COURSES = [
 ];
 
 const SUCCESS_STORIES = [
-  { name: "Chidi Okafor", role: "Software Engineer at Google", text: "Jengatech transformed my logic. I went from zero to hiring in 6 months.", growth: "300% Salary Increase", stars: 5 },
-  { name: "Sarah Bello", role: "UI/UX Lead", text: "The hands-on projects are real-world standard. The best academy in Nigeria.", growth: "Senior Role in 3 Months", stars: 5 },
-  { name: "Tunde James", role: "Cybersecurity Analyst", text: "The ethical hacking labs are intense. I feel confident defending any network.", growth: "Global Certification", stars: 5 },
+  { name: "Prosper", role: "Software Engineer", text: "Jengatech rebuilt my brain. Zero to hired in 6 months not because I memorized syntax, but because I finally learned to think like an engineer.", growth: "100% Salary Increase", stars: 4 },
+  { name: "", role: "Data Science", text: "I built my first churn prediction model. It was ugly, overfitted, and I presented it to a panel of actual data leads who tore it apart. Brutal. But I rebuilt it.", growth: "Senior Role in 3 Months", stars: 5 },
+  { name: "", role: "Cybersecurity Analyst", text: "Most courses teach you tools. Jengatech's ethical hacking labs teach you to think like the one person in the room who actually wants the system to break and then how to stop them. I don't feel confident. I feel dangerous. The good kind.", growth: "Global Certification", stars: 5 },
 ];
 
 export default function EducationPage() {

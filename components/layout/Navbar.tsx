@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "../../components/ui/Button";
 import { Menu, X, ArrowRight } from "lucide-react";
 
@@ -10,15 +11,14 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Detect scroll to add background blur
+  // Detect scroll to add background blur and shadow
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fix for "pushState" error: Close the menu after a frame to let 
-  // Next.js finish its internal routing event first.
+  // Stability Fix for mobile navigation
   const closeMenu = () => {
     requestAnimationFrame(() => {
       setIsOpen(false);
@@ -35,23 +35,40 @@ export const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
-      scrolled || isOpen ? "bg-white/95 backdrop-blur-md py-4 shadow-sm border-b border-gray-100" : "bg-transparent py-6"
+      scrolled || isOpen 
+        ? "bg-white/95 backdrop-blur-md py-4 shadow-sm border-b border-gray-100" 
+        : "bg-transparent py-6"
     }`}>
       <div className="max-width-container flex items-center justify-between">
-        {/* LOGO */}
-        <Link 
-          href="/" 
-          onClick={closeMenu}
-          className="text-xl md:text-2xl font-black tracking-tighter text-[#0A0A0A]"
-        >
-          JENGA<span className="text-[#FF6B00]">TECH</span>
+        
+        {/* --- LOGO & BRANDING --- */}
+        <Link href="/" onClick={closeMenu} className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 md:w-11 md:h-11 transition-transform group-hover:rotate-12 duration-300">
+            <Image 
+              src="/logo.png" 
+              alt="Jengatech Logo" 
+              fill 
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm md:text-xl font-black tracking-tighter leading-none text-[#0A0A0A]">
+              JENGA<span className="text-[#FF6B00]">TECH</span>
+            </span>
+            <span className="text-[7px] md:text-[8px] font-black uppercase tracking-[0.3em] text-gray-400 mt-1">
+              think it, build it.
+            </span>
+          </div>
         </Link>
         
-        {/* DESKTOP MENU */}
+        {/* --- DESKTOP MENU --- */}
         <div className="hidden md:flex items-center gap-10">
           <div className="flex items-center gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-[#525252]">
             {navLinks.map((link) => {
+              // Hide "Explore" link on Desktop as requested
               if (link.name === "Explore") return null;
+              
               const isActive = pathname === link.href;
               return (
                 <Link 
@@ -65,10 +82,12 @@ export const Navbar = () => {
               );
             })}
           </div>
-          <Button href="/consultation" className="py-2.5 px-6 text-[10px]">Consultation</Button>
+          <Button href="/consultation" className="py-2.5 px-6 text-[10px] shadow-sm">
+            Consultation
+          </Button>
         </div>
 
-        {/* MOBILE TOGGLE BUTTON */}
+        {/* --- MOBILE TOGGLE BUTTON --- */}
         <button 
           className="md:hidden p-2 text-[#0A0A0A] bg-gray-50 rounded-xl active:scale-90 transition-all" 
           onClick={() => setIsOpen(!isOpen)}
@@ -77,12 +96,14 @@ export const Navbar = () => {
         </button>
       </div>
 
-      {/* PROFESSIONAL MOBILE DROPDOWN */}
-      <div className={`md:hidden absolute top-[calc(100%+10px)] left-6 right-6 bg-white rounded-[2rem] border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top ${
+      {/* --- PROFESSIONAL MOBILE DROPDOWN (Floating Card) --- */}
+      <div 
+        className={`md:hidden absolute top-[calc(100%+10px)] left-6 right-6 bg-white rounded-[2.5rem] border border-gray-100 shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] origin-top ${
           isOpen ? "opacity-100 scale-100 translate-y-0 visible" : "opacity-0 scale-95 -translate-y-4 invisible"
-        }`}>
+        }`}
+      >
         <div className="p-8 flex flex-col gap-1">
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-4 px-2">Navigation</p>
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-4 px-3">Navigation</p>
           
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -91,13 +112,13 @@ export const Navbar = () => {
                 key={link.name} 
                 href={link.href}
                 onClick={closeMenu}
-                prefetch={false} // Stops the background pre-fetch conflict
+                prefetch={false}
                 className={`flex items-center justify-between group p-4 rounded-2xl transition-all ${isActive ? 'bg-orange-50' : 'hover:bg-gray-50'}`}
               >
                 <span className={`text-sm font-black uppercase tracking-widest ${isActive ? 'text-[#FF6B00]' : 'text-[#0A0A0A]'}`}>
                   {link.name}
                 </span>
-                <ArrowRight size={16} className={`${isActive ? 'text-[#FF6B00]' : 'text-gray-300'}`} />
+                <ArrowRight size={16} className={`${isActive ? 'text-[#FF6B00]' : 'text-gray-300'} group-hover:translate-x-1 transition-transform`} />
               </Link>
             );
           })}
@@ -106,7 +127,7 @@ export const Navbar = () => {
             <Button 
               href="/consultation" 
               onClick={closeMenu} 
-              className="w-full py-5 text-[11px]"
+              className="w-full py-5 text-[11px] shadow-lg shadow-orange-100"
             >
               Book Consultation
             </Button>
