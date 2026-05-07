@@ -72,11 +72,11 @@ export const Footer = () => {
                </div>
                <div>
                   <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Direct Line</p>
-                  <a href="tel:+2348130963475" className="text-sm font-bold text-[#0A0A0A] hover:text-[#FF6B00]">+234 813 096 3475</a>
+                  <a href="tel:+2348130963475" className="text-sm font-bold text-[#0A0A0A] hover:text-[#FF6B00]">+234 7036180749</a>
                </div>
                <div>
                   <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Mail US</p>
-                  <a href="mailto:info@jengatech.com" className="text-sm font-bold text-[#0A0A0A] hover:text-[#FF6B00]">info@jengatech.com</a>
+                  <a href="mailto:info@jengatech.com" className="text-sm font-bold text-[#0A0A0A] hover:text-[#FF6B00]">support@jengatechafrica.com</a>
                </div>
             </div>
           </div>

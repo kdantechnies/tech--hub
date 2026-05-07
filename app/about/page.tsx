@@ -170,30 +170,59 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* --- 5. THE BUILDERS (Leadership Section) --- */}
-      <section className="py-32 px-6 border-t border-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div className="max-w-2xl">
-              <span className="text-[#FF6B00] font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Leadership</span>
-              <h2 className="text-4xl md:text-7xl font-black text-[#0A0A0A] tracking-tighter">
-                The team <br />behind <span className="text-[#FF6B00] italic">Jengatech.</span>
-              </h2>
+            {/* --- 5. THE BUILDERS (Leadership Section) --- */}
+        <section className="py-32 px-6 border-t border-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+              <div className="max-w-2xl">
+                <span className="text-[#FF6B00] font-black uppercase tracking-[0.3em] text-[10px] mb-4 block">Leadership</span>
+                <h2 className="text-4xl md:text-7xl font-black text-[#0A0A0A] tracking-tighter">
+                  The team <br />behind <span className="text-[#FF6B00] italic">Jengatech.</span>
+                </h2>
+              </div>
+            </div>
+
+            {/* Professional Circular Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+              <TeamCard 
+                name="Roland Onyekwere" 
+                role="Founder & CEO" 
+                image="/images/ceo.jpg" 
+                linkedin="https://linkedin.com/in/rolandonyekwere19" 
+              />
+              <TeamCard 
+                name="Marvelous Uzowuchi" 
+                role="Cyber security and robotics engineer" 
+                image="/images/mav.webp" 
+                linkedin="https://linkedin.com/in/chimezie-marvelous-uzowuchi"
+              />
+              <TeamCard 
+                name="Precious Onyekwere" 
+                role="Digital Marketing Expert" 
+                image="/images/prec.webp" 
+                linkedin="https://linkedin.com/in/oluchi-onyekwere"
+              />
+              <TeamCard 
+                name="Nwaiwu Uzoma" 
+                role="Software Engineer" 
+                image="/images/uzo.webp" 
+                linkedin="https://linkedin.com/in/uzoma-nwaiwu"
+              />
+              <TeamCard 
+                name="Nwobodo Maryanne" 
+                role="AI Animation Specialist" 
+                image="/images/mary.webp" 
+                linkedin="https://linkedin.com/in/maryanne-nwobodo"
+              />
+              <TeamCard 
+                name="Kalu Onuka Daniel" 
+                role="Software Engineer" 
+                image="/images/dana.webp" 
+                linkedin="https://linkedin.com/in/kaluonukadaniel-dev"
+              />
             </div>
           </div>
-
-          {/* Professional Circular Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
-            <TeamCard name="Roland Onyekwere" role="Founder & CeO" image="/images/ceo.webp" />
-            <TeamCard name="Marvelous Uzowuchi" role="Cyber security and robotics engineer" image="/images/mav.webp" />
-            <TeamCard name="Precious Onyekwere" role="Digital Marketing Expert" image="/images/prec.webp" />
-            <TeamCard name="Nwaiwu Uzoma" role="Software Engineer" image="/images/uzo.webp" />
-            <TeamCard name="Nwobodo Maryanne" role="AI Animation Specialist" image="/images/mary.webp" />
-            <TeamCard name="Kalu Onuka Daniel" role="Software Engineer" image="/images/dana.webp" />
-            
-          </div>
-        </div>
-      </section>
+        </section>
 
       {/* 6. FINAL ACTION */}
       <section className="py-44 px-6 text-center bg-[#F9FAFB] border-t border-gray-100">
@@ -215,7 +244,17 @@ export default function AboutPage() {
 }
 
 // --- PROFESSIONAL TEAM CARD UI ---
-function TeamCard({ name, role, image }: { name: string, role: string, image: string }) {
+function TeamCard({ 
+  name, 
+  role, 
+  image, 
+  linkedin 
+}: { 
+  name: string, 
+  role: string, 
+  image: string, 
+  linkedin: string // Added this line
+}) {
   return (
     <div className="flex flex-col items-center group">
       {/* Soft Beige Background Card */}
@@ -232,11 +271,17 @@ function TeamCard({ name, role, image }: { name: string, role: string, image: st
           </div>
         </div>
 
-        {/* Floating Connect Button */}
+        {/* Floating Connect Button - NOW CLICKABLE */}
         <div className="mt-6 flex gap-2">
-           <div className="w-8 h-8 rounded-full bg-[#0A0A0A] flex items-center justify-center text-white hover:bg-[#FF6B00] transition-all cursor-pointer shadow-md">
-              <LinkedinIcon size={14} />
-           </div>
+           <a 
+            href={linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-10 h-10 rounded-full bg-[#0A0A0A] flex items-center justify-center text-white hover:bg-[#FF6B00] hover:scale-110 transition-all cursor-pointer shadow-md"
+            title={`Connect with ${name} on LinkedIn`}
+           >
+              <LinkedinIcon size={16} />
+           </a>
         </div>
       </div>
 
@@ -246,4 +291,5 @@ function TeamCard({ name, role, image }: { name: string, role: string, image: st
       </div>
     </div>
   );
+
 }
