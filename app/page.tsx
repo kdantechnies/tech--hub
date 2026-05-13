@@ -62,7 +62,7 @@ export default function HomePage() {
               <Button href="/solutions" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
                 Our Services
               </Button>
-              <Button href="" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
+              <Button href="/our-app" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
                 Our Apps
               </Button>
               <Button href="/education" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
