@@ -79,7 +79,7 @@ export default function EducationPage() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="relative order-2 lg:order-1">
             <div className="relative w-full aspect-square md:w-[520px] md:h-[520px] mx-auto overflow-hidden rounded-full border-[12px] md:border-[20px] border-white shadow-2xl">
-              <img src="/images/fir.webp" alt="Jengatech Students" className="w-full h-full object-cover" loading="eager" />
+              <img src="/images/adul.webp" alt="Jengatech Students" className="w-full h-full object-cover" loading="eager" />
             </div>
             <div className="absolute -bottom-6 -right-6 w-64 h-64 bg-[#0A0A0A] rounded-full -z-10 opacity-5 hidden md:block"></div>
           </div>

@@ -211,6 +211,26 @@ export default function HomePage() {
         </div>
       </section>
 
+                        {/* --- FAQ REDIRECT SECTION - Forced Desktop Only --- */}
+          <div className="!hidden lg:!block py-24 px-6 bg-[#F9FAFB] border-y border-gray-100">
+            <div className="max-width-container flex flex-col md:flex-row items-center justify-between gap-12">
+              <div className="max-w-2xl text-left">
+                <h2 className="text-4xl md:text-6xl font-black text-[#0A0A0A] tracking-tighter leading-[0.9] mb-6">
+                  Got questions? <br /> We have <span className="text-[#FF6B00]">Answers.</span>
+                </h2>
+                <p className="text-[#525252] text-lg font-medium leading-relaxed">
+                  Explore our full knowledge base covering fees, career outcomes, and technical requirements.
+                </p>
+              </div>
+              <Button 
+                href="/faq" 
+                className="group px-12 py-6 rounded-2xl bg-[#0A0A0A] text-white hover:bg-[#FF6B00] border-none transition-all shadow-xl shadow-black/10"
+              >
+                Open FAQ<ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
+              </Button>
+            </div>
+          </div>
+
       {/* 5. THE JENGATECH NETWORK (Partners) */}
       <section className="py-32 px-6 bg-white border-t border-gray-50">
         <div className="max-width-container">

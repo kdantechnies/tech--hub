@@ -85,7 +85,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Head Office</p>
-                  <p className="font-bold text-[#0A0A0A]">Aba, Nigeria</p>
+                  <p className="font-bold text-[#0A0A0A]">Plot 13 Ekenna, Aba, Nigeria</p>
                 </div>
               </div>
             </div>

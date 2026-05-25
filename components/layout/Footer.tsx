@@ -68,7 +68,7 @@ export const Footer = () => {
             <div className="space-y-4">
                <div>
                   <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Office</p>
-                  <p className="text-sm font-bold text-[#0A0A0A]">Aba, Nigeria</p>
+                  <p className="text-sm font-bold text-[#0A0A0A]">Plot 13 Ekenna, Aba, Nigeria</p>
                </div>
                <div>
                   <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Direct Line</p>
