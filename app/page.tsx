@@ -59,7 +59,7 @@ export default function HomePage() {
               <p className="text-sm text-[#525252] max-w-[200px] lg:text-right leading-relaxed font-medium">
                 JengaTech is a polymorphic ecosystem where rarefield technical mastery converges with enterprise-grade engineering to architect scalable futures in the evolving global economy.
               </p>
-              <Button href="/solutions" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
+              <Button href="https://www.codexsolutions.jengatechafrica.com" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
                 Our Services
               </Button>
               <Button href="/our-app" className="bg-[#0A0A0A] hover:bg-[#FF6B00] px-4 py-4 rounded-full text-xs shadow-2xl transition-all scale-110">
